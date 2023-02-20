@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "143252351677",
+    "project_id": "korepetytio-9d8b3",
+    "storage_bucket": "korepetytio-9d8b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143252351677:android:7baaf585878b6b6d56e5d4",
+        "android_client_info": {
+          "package_name": "com.example.korepetytio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143252351677-ce9agguhpp6qfrfloscgeuqtujvjfdaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqTLq1boz47MJZfmiHtIEmH0jRgt3Vs80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143252351677-ce9agguhpp6qfrfloscgeuqtujvjfdaf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143252351677:android:dc5b2400e983fcb356e5d4",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143252351677-ce9agguhpp6qfrfloscgeuqtujvjfdaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqTLq1boz47MJZfmiHtIEmH0jRgt3Vs80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143252351677-ce9agguhpp6qfrfloscgeuqtujvjfdaf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

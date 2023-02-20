@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Korepetytio</string>
+    <string name="zaloguj">Zaloguj</string>
+    <string name="rejestracja">Rejestracja</string>
+    <string name="wejd_jako_go">Wejdź jako gość</string>
+    <string name="todo">TODO</string>
+    <string name="logowanie">Logowanie</string>
+    <string name="wr">Wróć</string>
+    <string name="todo1">TODO</string>
+    <string name="api">Api</string>
+    <string name="password">Password</string>
+    <string name="email">email</string>
+    <string name="teacher">Teacher</string>
+    <string name="student">Student</string>
+</resources>
