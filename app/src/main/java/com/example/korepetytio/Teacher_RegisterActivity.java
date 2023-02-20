@@ -9,10 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.korepetytio.client.CLientEmail;
-import com.example.korepetytio.client.ClientPassword;
 import com.example.korepetytio.client.ClientRole;
-import com.example.korepetytio.client.ClientUsername;
 import com.example.korepetytio.client.Dysfunctions;
 import com.example.korepetytio.client.LessonPrice;
 import com.example.korepetytio.client.Subject;
@@ -24,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Teacher_RegisterActivity extends AppCompatActivity {
 
@@ -54,11 +52,9 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
         username = (EditText)findViewById(R.id.editTextTextPersonName4);
         String tekst3 =username.getText().toString();
 
-
-
 //        if(!tekst.isEmpty() && !tekst2.isEmpty() && !tekst3.isEmpty()){
             firestore = FirebaseFirestore.getInstance();
-            Teacher teacher = new Teacher(new ClientUsername(tekst2),new ClientPassword(tekst3),new CLientEmail(tekst),
+            Teacher teacher = new Teacher(String.valueOf(UUID.randomUUID()), tekst3 ,tekst2, tekst,
                     ClientRole.TEACHER, Dysfunctions.AUTISM,new LessonPrice(100.0),new Subject("Matematyka"));
             Map<String, Object> user = new HashMap<>();
 //            user.put("Teachers", new Teacher(new ClientUsername(tekst2),new ClientPassword(tekst3),new CLientEmail(tekst), ClientRole.TEACHER, Dysfunctions.AUTISM,new LessonPrice(100.0),new Subject("Matematyka")));
@@ -78,7 +74,6 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Failure",Toast.LENGTH_LONG).show();
                 }
             });
-
 
             Intent i = new Intent(this, AppActivity.class);
             startActivity(i);
