@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onCreate"
     tools:context=".Teacher_RegisterActivity">
 
     <Button
@@ -62,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="132dp"
         android:layout_marginBottom="52dp"
-        android:onClick="register"
+        android:onClick="CreateAccount"
         android:text="@string/rejestracja"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,15 +1,25 @@
 package com.example.korepetytio;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class LoginActivity extends AppCompatActivity {
-    private EditText email;
-    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +29,5 @@ public class LoginActivity extends AppCompatActivity {
     public void backtoMain(View v){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-    }
-
-    public void check_login(View v){
-        email = (EditText)findViewById(R.id.editTextTextPersonName2);
-        String tekst =email.getText().toString();
-        password = (EditText)findViewById(R.id.editTextTextPersonName3);
-        String tekst2 =email.getText().toString();
-        if(!tekst.isEmpty() && !tekst2.isEmpty()){
-            Intent i = new Intent(this, AppActivity.class);
-            startActivity(i);
-        }
-
     }
 }
