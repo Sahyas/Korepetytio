@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,7 +38,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Teacher_RegisterActivity extends AppCompatActivity {
@@ -52,11 +57,34 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_register);
 
+        List<String> options = new ArrayList<>();
+        options.add("Student");
+        options.add("Teacher");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+
         button7 = (Button) findViewById(R.id.button7);
         editTextTextPersonName5 = (EditText) findViewById(R.id.editTextTextPersonName5);
         editTextTextPersonName6 = (EditText) findViewById(R.id.editTextTextPersonName6);
         editTextTextPersonName4 = (EditText) findViewById(R.id.editTextTextPersonName4);
         loadingBar = new ProgressDialog(this);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedOption = parent.getItemAtPosition(position).toString();
+                // zrób coś z wybraną opcją (np. zapisz ją do zmiennej)
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // nie rób nic
+            }
+        });
 
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +131,7 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
         user.put("username", username);
         user.put("email", email);
         user.put("password", password);
+        user.put("role", "teacher");
 
 
 // Add a new document with a generated ID
