@@ -47,7 +47,6 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
     private EditText editTextTextPersonName5;
     private EditText editTextTextPersonName6;
     private EditText editTextTextPersonName4;
-    private FirebaseFirestore firestore ;
 
     private ProgressDialog loadingBar;
     @Override
@@ -61,9 +60,6 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        Spinner spinner = findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
 
         button7 = findViewById(R.id.button7);
         editTextTextPersonName5 = findViewById(R.id.editTextTextPersonName5);
@@ -99,11 +95,9 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
     }
 
     private void CreateAccount() {
-        Spinner spinner = findViewById(R.id.spinner);
         String name = editTextTextPersonName5.getText().toString();
         String email = editTextTextPersonName6.getText().toString();
         String password = editTextTextPersonName4.getText().toString();
-        String selectedValue = spinner.getSelectedItem().toString();
         if(TextUtils.isEmpty(name)){
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         }
@@ -119,23 +113,22 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            register(name, email, password, selectedValue);
+            register(name, email, password);
         }
     }
 
 
-    public void register(String username, String email, String password, String selectedValue) {
+    public void register(String username, String email, String password) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         user.put("username", username);
         user.put("email", email);
         user.put("password", password);
-        user.put("role", selectedValue);
 
 
 // Add a new document with a generated ID
-        db.collection("users")
+        db.collection("teachers")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

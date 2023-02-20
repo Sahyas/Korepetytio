@@ -16,17 +16,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
-    public void backtoMain(View v){
+
+    public void backtoMain(View v) {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
-    public void check_login(View v){
-        email = (EditText)findViewById(R.id.editTextTextPersonName2);
-        String tekst =email.getText().toString();
-        password = (EditText)findViewById(R.id.editTextTextPersonName3);
-        String tekst2 =email.getText().toString();
-        if(!tekst.isEmpty() && !tekst2.isEmpty()){
+    public void check_login(View v) {
+        email = (EditText) findViewById(R.id.editTextTextPersonName2);
+        String tekst = email.getText().toString();
+        password = (EditText) findViewById(R.id.editTextTextPersonName3);
+        String tekst2 = email.getText().toString();
+        if (!tekst.isEmpty() && !tekst2.isEmpty()) {
             Intent i = new Intent(this, AppActivity.class);
             startActivity(i);
         }
