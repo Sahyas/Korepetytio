@@ -18,10 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.korepetytio.client.CLientEmail;
-import com.example.korepetytio.client.ClientPassword;
 import com.example.korepetytio.client.ClientRole;
-import com.example.korepetytio.client.ClientUsername;
 import com.example.korepetytio.client.Dysfunctions;
 import com.example.korepetytio.client.LessonPrice;
 import com.example.korepetytio.client.Subject;
@@ -42,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class Teacher_RegisterActivity extends AppCompatActivity {
 
