@@ -64,27 +64,28 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
 
-        button7 = (Button) findViewById(R.id.button7);
-        editTextTextPersonName5 = (EditText) findViewById(R.id.editTextTextPersonName5);
-        editTextTextPersonName6 = (EditText) findViewById(R.id.editTextTextPersonName6);
-        editTextTextPersonName4 = (EditText) findViewById(R.id.editTextTextPersonName4);
+        button7 = findViewById(R.id.button7);
+        editTextTextPersonName5 = findViewById(R.id.editTextTextPersonName5);
+        editTextTextPersonName6 = findViewById(R.id.editTextTextPersonName6);
+        editTextTextPersonName4 = findViewById(R.id.editTextTextPersonName4);
+
         loadingBar = new ProgressDialog(this);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedOption = parent.getItemAtPosition(position).toString();
-                // zrób coś z wybraną opcją (np. zapisz ją do zmiennej)
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // nie rób nic
-            }
-        });
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedOption = parent.getItemAtPosition(position).toString();
+//                // zrób coś z wybraną opcją (np. zapisz ją do zmiennej)
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // nie rób nic
+//            }
+//        });
 
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,10 +101,11 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
     }
 
     private void CreateAccount() {
+        Spinner spinner = findViewById(R.id.spinner);
         String name = editTextTextPersonName5.getText().toString();
         String email = editTextTextPersonName6.getText().toString();
         String password = editTextTextPersonName4.getText().toString();
-
+        String selectedValue = spinner.getSelectedItem().toString();
         if(TextUtils.isEmpty(name)){
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         }
@@ -119,19 +121,19 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            register(name, email, password);
+            register(name, email, password, selectedValue);
         }
     }
 
 
-    public void register(String username, String email, String password) {
+    public void register(String username, String email, String password, String selectedValue) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         user.put("username", username);
         user.put("email", email);
         user.put("password", password);
-        user.put("role", "teacher");
+        user.put("role", selectedValue);
 
 
 // Add a new document with a generated ID

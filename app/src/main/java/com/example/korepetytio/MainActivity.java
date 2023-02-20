@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void register(View v){
-        Intent i = new Intent(this, RoleActivity.class);
+        Intent i = new Intent(this, Teacher_RegisterActivity.class);
         startActivity(i);
     }
 }

@@ -26,13 +26,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RoleActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".AppActivity"
             android:exported="false">
             <meta-data
