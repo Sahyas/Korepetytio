@@ -15,7 +15,7 @@
         android:layout_marginBottom="182dp"
         android:onClick="backtoMain"
         android:text="@string/wr"
-        android:textColor="#455A64"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -29,7 +29,7 @@
         android:layout_marginBottom="28dp"
         android:onClick="check_login"
         android:text="@string/zaloguj"
-        android:textColor="#455A64"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

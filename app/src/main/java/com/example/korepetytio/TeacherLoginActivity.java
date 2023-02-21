@@ -56,7 +56,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
         }
         else {
-            loadingBar.setTitle("Create Account");
+            loadingBar.setTitle("Login");
             loadingBar.setMessage("Please wait, while we are checking the credentials.");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();

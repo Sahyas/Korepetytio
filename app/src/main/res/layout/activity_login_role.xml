@@ -14,7 +14,7 @@
         android:layout_marginTop="240dp"
         android:onClick="studentLogin"
         android:text="@string/student"
-        android:textColor="#455A64"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
         android:layout_marginTop="118dp"
         android:onClick="teacherLogin"
         android:text="@string/teacher"
-        android:textColor="#455A64"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonR1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
