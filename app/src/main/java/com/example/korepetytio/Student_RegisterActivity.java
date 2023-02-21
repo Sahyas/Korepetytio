@@ -43,32 +43,12 @@ public class Student_RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_register);
 
-//        List<String> options = new ArrayList<>();
-//        options.add("Student");
-//        options.add("Teacher");
-
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         button10 = findViewById(R.id.button7);
         editTextTextPersonName8 = findViewById(R.id.editTextTextPersonName5);
         editTextTextPersonName9 = findViewById(R.id.editTextTextPersonName6);
         editTextTextPersonName7 = findViewById(R.id.editTextTextPersonName4);
 
         loadingBar = new ProgressDialog(this);
-
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selectedOption = parent.getItemAtPosition(position).toString();
-//                // zrób coś z wybraną opcją (np. zapisz ją do zmiennej)
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // nie rób nic
-//            }
-//        });
 
         button10.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +64,10 @@ public class Student_RegisterActivity extends AppCompatActivity {
     }
 
     private void CreateAccount() {
-        String name = editTextTextPersonName8.getText().toString();
+        String username = editTextTextPersonName8.getText().toString();
         String email = editTextTextPersonName9.getText().toString();
         String password = editTextTextPersonName7.getText().toString();
-        if(TextUtils.isEmpty(name)){
+        if(TextUtils.isEmpty(username)){
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(email)){
@@ -102,7 +82,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            register(name, email, password);
+            register(username, email, password);
         }
     }
 
