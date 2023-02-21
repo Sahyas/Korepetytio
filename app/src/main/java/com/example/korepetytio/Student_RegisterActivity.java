@@ -15,15 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -38,6 +31,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
     private EditText editTextTextPersonName7;
 
     private ProgressDialog loadingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +52,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void backtoMain(View v){
+    public void backtoMain(View v) {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
@@ -67,16 +61,13 @@ public class Student_RegisterActivity extends AppCompatActivity {
         String username = editTextTextPersonName8.getText().toString();
         String email = editTextTextPersonName9.getText().toString();
         String password = editTextTextPersonName7.getText().toString();
-        if(TextUtils.isEmpty(username)){
+        if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(email)){
+        } else if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please write your email...", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("Please wait, while we are checking the credentials.");
             loadingBar.setCanceledOnTouchOutside(false);
