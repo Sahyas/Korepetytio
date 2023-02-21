@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,27 +122,42 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
     public void register(String username, String email, String password) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> user = new HashMap<>();
-        user.put("username", username);
-        user.put("email", email);
-        user.put("password", password);
-
-
-// Add a new document with a generated ID
         db.collection("teachers")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .whereEqualTo("email", email)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        Intent intent = new Intent(Teacher_RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            Log.w(TAG, "This " + email + "already exists");
+                            Intent intent = new Intent(Teacher_RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+
+                        } else {
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("username", username);
+                            user.put("email", email);
+                            user.put("password", password);
+
+
+                            // Add a new document with a generated ID
+                            db.collection("teachers")
+                                    .add(user)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                            Intent intent = new Intent(Teacher_RegisterActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error adding document", e);
+                                        }
+                                    });
+                        }
                     }
                 });
 
