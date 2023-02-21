@@ -18,7 +18,7 @@ public class RoleActivity extends AppCompatActivity {
         startActivity(new Intent(this, Teacher_RegisterActivity.class));
     }
 
-//    public void studentRegister(View v) {
-//        startActivity(new Intent(this, Student_RegisterActivity.class));
-//    }
+    public void studentRegister(View v) {
+        startActivity(new Intent(this, Student_RegisterActivity.class));
+    }
 }
