@@ -79,7 +79,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
-                            client = new Client(name, password, email, ClientRole.STUDENT);
+                            Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
+                            client = new Client(name, password, email, ClientRole.STUDENT,grade);
                             Log.d(TAG, "TAAAAA:        " + name);
                             Log.d(TAG, "TAAAAA:        " + client);
                             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);

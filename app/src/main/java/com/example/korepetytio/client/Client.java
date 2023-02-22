@@ -8,17 +8,27 @@ public class Client {
     private String password;
     private String email;
     private ClientRole role;
+    private Double grade;
     private boolean isEnable = true;
 
-    public Client( String username, String password, String email, ClientRole role) {
+    public Client( String username, String password, String email, ClientRole role, Double grade) {
 //        this.id = String.valueOf(UUID.randomUUID());
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.grade = grade;
     }
 
 //    public String getId() {return id;}
+
+    public Double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
+    }
 
     public String getUsername() {return username;}
 

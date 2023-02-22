@@ -10,8 +10,8 @@
         android:id="@+id/profile"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="88dp"
         android:src="@drawable/profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,12 +26,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile" />
 
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="36dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/yellow"
+        android:rating="0"
+        android:stepSize="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile" />
+
     <Button
         android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="28dp"
         android:onClick="changePassword"
         android:text="Zmień hasło"
         app:layout_constraintStart_toStartOf="parent"

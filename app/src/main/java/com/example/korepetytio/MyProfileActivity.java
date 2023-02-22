@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 
@@ -22,7 +23,11 @@ public class MyProfileActivity extends AppCompatActivity {
         TextView myTextView = findViewById(R.id.textView2);
         myTextView.setText("Nazwa użytkownika: " + client.getUsername() + "\n" +
                 "Email użytkownika: " + client.getEmail()+ "\n" +
-                "Hasło użytkownika: " + client.getPassword());
+                "Hasło użytkownika: " + client.getPassword() + "\n" +
+                "Rola użytkownika: " + client.getRole());
+        RatingBar ratingBar = findViewById(R.id.rating_bar);
+        double grade = client.getGrade();
+        ratingBar.setRating((float) grade);
 
     }
 
