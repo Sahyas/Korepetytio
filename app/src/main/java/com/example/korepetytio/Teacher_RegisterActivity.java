@@ -113,7 +113,7 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
 
 
     public void register(String username, String email, String password, String lessonPrice, String dysfunctions, String subject) {
-        double grade = 1;
+        double grade = 0;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("teachers")
                 .whereEqualTo("email", email)

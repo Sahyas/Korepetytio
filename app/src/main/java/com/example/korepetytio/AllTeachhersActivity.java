@@ -71,7 +71,9 @@ public class AllTeachhersActivity extends Activity {
 
                                 teachers.add(new Client(String.valueOf(document.getData().get("username")), String.valueOf(document.getData().get("password")),
                                         String.valueOf(document.getData().get("email")), ClientRole.TEACHER, (Double) document.getData().get("grade")));
-                               teachersList.add("Nauczyciel: " + document.getData().get("username") + "\nOcena nauczyciela to:" + document.getData().get("grade"));
+                                teachersList.add("Nauczyciel:  " + document.getData().get("username") + "\nOcena nauczyciela to: " + document.getData().get("grade")
+                                        + "\nCena nauczyciela to: " + document.getData().get("price") + "\nPrzedmiot nauczyciela to :" + document.getData().get("subject")
+                                        + "\nDysfunkcja: " + document.getData().get("dysfunctions"));
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                             Log.d(TAG, "CALA LISTA" + teachers.get(0).getUsername() + " " + teachers.get(0).getGrade());
