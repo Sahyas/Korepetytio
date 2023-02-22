@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +33,7 @@ public class AllTeachhersActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_teachhers);
         allTeachers();
@@ -77,5 +80,10 @@ public class AllTeachhersActivity extends Activity {
         Log.d(TAG, "duuuuupa" + teachers);
         adapter = new ArrayAdapter<String>(this, R.layout.single_teacher, teachers);
         list.setAdapter(adapter);
+    }
+
+    public void backtoChooseList(View v) {
+        Intent i = new Intent(this, MenuActivity.class);
+        startActivity(i);
     }
 }

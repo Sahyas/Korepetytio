@@ -18,6 +18,20 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/activity_content_home"/>
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:onClick="refresh"
+        android:text="Refresh"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="597dp" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_content_home" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

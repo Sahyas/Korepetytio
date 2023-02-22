@@ -8,65 +8,87 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="67dp">
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
-        android:onClick="backtoMain"
-        android:text="@string/wr"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="313dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="52dp"
+        android:text="Zarejestruj się"
+        android:textColor="#4CAF50"
+        android:textSize="48sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="266dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="32dp"
+        android:onClick="backtoMain"
+        android:text="@string/wr"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <EditText
         android:id="@+id/editTextTextPersonName7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="266dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPersonName"
-        android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/button10"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
 
     <EditText
         android:id="@+id/editTextTextPersonName8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="266dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="Username"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName7"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
 
     <EditText
         android:id="@+id/editTextTextPersonName9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="266dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textPersonName"
-        android:text="@string/email"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName8"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginBottom="52dp"
-        android:onClick="CreateAccount"
-        android:text="@string/rejestracja"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/button7"
+        android:layout_width="266dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="149dp"
+        android:background="#4CAF50"
+        android:text="@string/zarejestruj_si"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

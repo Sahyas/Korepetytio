@@ -12,4 +12,6 @@
     <string name="email">email</string>
     <string name="teacher">Teacher</string>
     <string name="student">Student</string>
+    <string name="username">UserName</string>
+    <string name="zarejestruj_si">Zarejestruj się</string>
 </resources>

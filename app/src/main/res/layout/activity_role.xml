@@ -8,25 +8,41 @@
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="240dp"
+        android:layout_width="281dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="32dp"
         android:onClick="studentRegister"
         android:text="@string/student"
-        android:textColor="#455A64"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="163dp"
-        android:layout_marginTop="118dp"
+        android:layout_width="281dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="32dp"
         android:onClick="teacherRegister"
-        android:text="@string/teacher"
-        android:textColor="#455A64"
+        android:text="nauczyciel"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button8" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="295dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="100dp"
+        android:text="Kim jestes?"
+        android:textColor="#4CAF50"
+        android:textSize="55sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textStyle="bold" />
 </androidx.constraintlayout.widget.ConstraintLayout>

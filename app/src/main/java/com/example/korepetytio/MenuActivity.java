@@ -14,6 +14,11 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
 
+    public void backtoMain(View v) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
     public void allTechers(View v) {
         startActivity(new Intent(this, AllTeachhersActivity.class));
     }
