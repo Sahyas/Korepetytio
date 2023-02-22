@@ -2,7 +2,6 @@ package com.example.korepetytio;
 
 
 import static com.example.korepetytio.LoginActivity.client;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.korepetytio.client.ClientRole;
 
 
 public class MyProfileActivity extends AppCompatActivity {
@@ -21,10 +24,22 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
 
         TextView myTextView = findViewById(R.id.textView2);
+        if(client.getRole()== ClientRole.TEACHER){
         myTextView.setText("Nazwa użytkownika: " + client.getUsername() + "\n" +
                 "Email użytkownika: " + client.getEmail()+ "\n" +
                 "Hasło użytkownika: " + client.getPassword() + "\n" +
-                "Rola użytkownika: " + client.getRole());
+                "Rola użytkownika: " + client.getRole()+ "\n" +
+                "Dysfunkcja użytkownika: " + client.getDysfunctions()+ "\n" +
+                "Przedmiot użytkownika: " + client.getSubject()+ "\n" +
+                "Cena użytkownika: " + client.getLessonPrice());
+        }
+        else {
+            myTextView.setText("Nazwa użytkownika: " + client.getUsername() + "\n" +
+                    "Email użytkownika: " + client.getEmail()+ "\n" +
+                    "Hasło użytkownika: " + client.getPassword() + "\n" +
+                    "Rola użytkownika: " + client.getRole()+ "\n" +
+                    "Dysfunkcja użytkownika: " + client.getDysfunctions());
+        }
         RatingBar ratingBar = findViewById(R.id.rating_bar);
         double grade = client.getGrade();
         ratingBar.setRating((float) grade);

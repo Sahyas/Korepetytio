@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.korepetytio.client.Client;
 import com.example.korepetytio.client.ClientRole;
+import com.example.korepetytio.client.Teacher;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextTextPersonName2;
     private EditText editTextTextPersonName3;
     private ProgressDialog loadingBar;
-    public static Client client;
+    public static Teacher client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
                             Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
-                            client = new Client(name, password, email, ClientRole.STUDENT,grade);
+                            String dysfunction = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("dysfunctions"));
+                            client = new Teacher(name, password, email, ClientRole.STUDENT, grade, dysfunction, null, null);
                             Log.d(TAG, "TAAAAA:        " + name);
                             Log.d(TAG, "TAAAAA:        " + client);
                             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);

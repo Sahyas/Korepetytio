@@ -2,19 +2,22 @@ package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.korepetytio.client.Dysfunctions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,28 +28,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Student_RegisterActivity extends AppCompatActivity {
-    private Button button10;
+    private Button button7;
     private EditText editTextTextPersonName8;
     private EditText editTextTextPersonName9;
     private EditText editTextTextPersonName7;
-
+    Spinner spinner3;
+    private String dysfunctions;
     private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_register);
+        setContentView(R.layout.activity_student_register);
 
-        button10 = findViewById(R.id.button7);
-        editTextTextPersonName8 = findViewById(R.id.editTextTextPersonName5);
-        editTextTextPersonName9 = findViewById(R.id.editTextTextPersonName6);
-        editTextTextPersonName7 = findViewById(R.id.editTextTextPersonName4);
+        spinner3 = (Spinner) findViewById(R.id.spinner3);
+        String[] options = {Dysfunctions.AUTISM.toString(), Dysfunctions.VISUALLY_IMPAIRED.toString(), Dysfunctions.NO_DYSFUNCTIONS.toString()};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(adapter);
+
+        button7 = findViewById(R.id.button7);
+        editTextTextPersonName8 = findViewById(R.id.editTextTextPersonName8);
+        editTextTextPersonName9 = findViewById(R.id.editTextTextPersonName9);
+        editTextTextPersonName7 = findViewById(R.id.editTextTextPersonName7);
 
         loadingBar = new ProgressDialog(this);
 
-        button10.setOnClickListener(new View.OnClickListener() {
+        button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dysfunctions = spinner3.getSelectedItem().toString();
                 CreateAccount();
             }
         });
@@ -73,12 +85,12 @@ public class Student_RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            register(username, email, password);
+            register(username, email, password, dysfunctions);
         }
     }
 
 
-    public void register(String username, String email, String password) {
+    public void register(String username, String email, String password, String dysfunctions) {
         double grade = 1;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("students")
@@ -98,6 +110,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
                             user.put("email", email);
                             user.put("password", password);
                             user.put("grade", grade);
+                            user.put("dysfunctions", dysfunctions);
 
                             // Add a new document with a generated ID
                             db.collection("students")

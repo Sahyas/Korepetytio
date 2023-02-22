@@ -1,10 +1,7 @@
 package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
-
 import static com.example.korepetytio.LoginActivity.client;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,8 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.korepetytio.client.Client;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.korepetytio.client.ClientRole;
+import com.example.korepetytio.client.Teacher;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -83,7 +82,10 @@ public class TeacherLoginActivity extends AppCompatActivity {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
                             Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
-                            client = new Client(name, password, email, ClientRole.TEACHER,grade);
+                            String dysfunction = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("dysfunctions"));
+                            String price = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("price"));
+                            String subject = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("subject"));
+                            client = new Teacher(name, password, email, ClientRole.TEACHER, grade, dysfunction, price, subject);
                             Log.d(TAG, "TAAAAA:        " + name);
                             Log.d(TAG, "TAAAAA:        " + client);
                             Intent intent = new Intent(TeacherLoginActivity.this, MenuActivity.class);
