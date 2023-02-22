@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
+                            //
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
                             Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
                             client = new Client(name, password, email, ClientRole.STUDENT,grade);

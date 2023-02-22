@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Row"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:textSize="24sp"
-    android:textStyle="bold"
-    />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!--<ImageView
+        android:id="@+id/list_item_thumbnail"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_above="@+id/list_item_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="268dp"
+        android:layout_marginBottom="21dp"
+        app:srcCompat="@drawable/profile" />-->
+
+    <TextView
+        android:id="@+id/Row"
+        android:layout_width="match_parent"
+        android:layout_height="207dp"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/list_item_btn"
+        android:layout_width="411dp"
+        android:layout_height="51dp"
+        android:layout_alignBottom="@+id/Row"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="4dp"
+        android:text="Zatrudnij" />
+
+
+</RelativeLayout>
