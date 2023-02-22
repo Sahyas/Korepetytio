@@ -59,11 +59,9 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="155dp"
-        android:layout_marginBottom="228dp"
         android:onClick="profile"
         android:text="Profile"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +76,7 @@
         android:text="Wyloguj"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 

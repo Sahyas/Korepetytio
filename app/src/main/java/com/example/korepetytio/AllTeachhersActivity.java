@@ -75,7 +75,11 @@ public class AllTeachhersActivity extends Activity {
                                         + "\nCena nauczyciela to: " + document.getData().get("price") + "\nPrzedmiot nauczyciela to :" + document.getData().get("subject")
                                         + "\nDysfunkcja: " + document.getData().get("dysfunctions"));
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+
+
+
                             }
+
                             Log.d(TAG, "CALA LISTA" + teachers.get(0).getUsername() + " " + teachers.get(0).getGrade());
                         } else {
                             Log.d(TAG, "Error getting documents: ");

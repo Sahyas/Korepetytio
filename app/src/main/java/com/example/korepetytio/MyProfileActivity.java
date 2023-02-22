@@ -23,6 +23,11 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+
+
+//        db.collection("students")
+//                .whereEqualTo("email", client.getEmail())
+//                .get()
         TextView myTextView = findViewById(R.id.textView2);
         if(client.getRole()== ClientRole.TEACHER){
         myTextView.setText("Nazwa użytkownika: " + client.getUsername() + "\n" +
@@ -55,4 +60,5 @@ public class MyProfileActivity extends AppCompatActivity {
         Intent i = new Intent(this, ChangePasswordActivity.class);
         startActivity(i);
     }
+
 }
