@@ -14,4 +14,7 @@
     <string name="student">Student</string>
     <string name="username">UserName</string>
     <string name="zarejestruj_si">Zarejestruj się</string>
+    <string name="title_activity_item_detail_host">ItemDetailHostActivity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>

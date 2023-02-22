@@ -1,5 +1,7 @@
 package com.example.korepetytio;
 
+import static com.example.korepetytio.LoginActivity.client;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,5 +23,13 @@ public class MenuActivity extends AppCompatActivity {
 
     public void allTechers(View v) {
         startActivity(new Intent(this, AllTeachhersActivity.class));
+    }
+
+    public void profile(View v) {
+        startActivity(new Intent(this, MyProfileActivity.class));
+    }
+    public void wyloguj(View v) {
+        client = null;
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

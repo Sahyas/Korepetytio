@@ -3,9 +3,9 @@ package com.example.korepetytio.client;
 public class Student extends Client{
     private Dysfunctions dysfunctions;
 
-    public Student(String id, String username, String password, String email, ClientRole role,
+    public Student( String username, String password, String email, ClientRole role, Double grade,
                    Dysfunctions dysfunctions) {
-        super(id, username, password, email, role);
+        super(username, password, email, role, grade);
         this.dysfunctions = dysfunctions;
     }
 }

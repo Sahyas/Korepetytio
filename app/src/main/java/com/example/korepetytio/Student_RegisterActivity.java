@@ -79,6 +79,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
 
 
     public void register(String username, String email, String password) {
+        double grade = 1;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("students")
                 .whereEqualTo("email", email)
@@ -96,7 +97,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
                             user.put("username", username);
                             user.put("email", email);
                             user.put("password", password);
-
+                            user.put("grade", grade);
 
                             // Add a new document with a generated ID
                             db.collection("students")
