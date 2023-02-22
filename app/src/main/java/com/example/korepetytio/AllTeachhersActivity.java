@@ -122,6 +122,10 @@ public class AllTeachhersActivity extends Activity {
                 //viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
                 viewHolder.title = (TextView) convertView.findViewById(R.id.Row);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
+
+//                RatingBar ratingBar = findViewById(R.id.rating_bar2);
+//                double grade = client.getGrade();
+//                ratingBar.setRating((float) grade);
                 viewHolder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
