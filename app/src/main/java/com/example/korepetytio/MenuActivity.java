@@ -17,4 +17,8 @@ public class MenuActivity extends AppCompatActivity {
     public void allTechers(View v) {
         startActivity(new Intent(this, AllTeachhersActivity.class));
     }
+
+    public void profile(View v) {
+        startActivity(new Intent(this, MyProfileActivity.class));
+    }
 }

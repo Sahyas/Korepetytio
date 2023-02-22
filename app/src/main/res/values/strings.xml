@@ -12,4 +12,7 @@
     <string name="email">email</string>
     <string name="teacher">Teacher</string>
     <string name="student">Student</string>
+    <string name="title_activity_item_detail_host">ItemDetailHostActivity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>

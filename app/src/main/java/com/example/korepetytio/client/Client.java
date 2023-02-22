@@ -3,22 +3,22 @@ package com.example.korepetytio.client;
 import java.util.UUID;
 
 public class Client {
-    private final String id;
+//    private final String id;
     private String username;
     private String password;
     private String email;
     private ClientRole role;
     private boolean isEnable = true;
 
-    public Client(String id, String username, String password, String email, ClientRole role) {
-        this.id = String.valueOf(UUID.randomUUID());
+    public Client( String username, String password, String email, ClientRole role) {
+//        this.id = String.valueOf(UUID.randomUUID());
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
     }
 
-    public String getId() {return id;}
+//    public String getId() {return id;}
 
     public String getUsername() {return username;}
 
