@@ -3,16 +3,22 @@ package com.example.korepetytio;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.korepetytio.client.Client;
 import com.example.korepetytio.client.ClientRole;
@@ -83,14 +89,54 @@ public class AllTeachhersActivity extends Activity {
     }
 
     public void refresh() {
-        list = (ListView) findViewById(R.id.listView1);
+        ListView lv = (ListView) findViewById(R.id.listView1);
         Log.d(TAG, "duuuuupa" + teachers);
-        adapter = new ArrayAdapter<String>(this, R.layout.single_teacher, teachersList);
-        list.setAdapter(adapter);
+        //adapter = new ArrayAdapter<String>(this, R.layout.single_teacher, teachersList);
+        lv.setAdapter(new MyListAdapter(this, R.layout.single_teacher, teachersList));
     }
 
     public void backtoChooseList(View v) {
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
+    }
+
+    private class MyListAdapter extends ArrayAdapter<String> {
+
+        public Client teacher;
+        private int layout;
+        public MyListAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
+            super(context, resource, objects);
+            layout = resource;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            ViewHolder mainViewholder = null;
+            if(convertView == null){
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(layout, parent, false);
+                ViewHolder viewHolder = new ViewHolder();
+                //viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
+                viewHolder.title = (TextView) convertView.findViewById(R.id.Row);
+                viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
+                viewHolder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(), "Clicked" + position, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                convertView.setTag(viewHolder);
+            }else{
+                mainViewholder = (ViewHolder) convertView.getTag();
+                mainViewholder.title.setText(getItem(position));
+            }
+            return convertView;
+        }
+    }
+    public class ViewHolder {
+        ImageView thumbnail;
+        TextView title;
+        Button button;
     }
 }
