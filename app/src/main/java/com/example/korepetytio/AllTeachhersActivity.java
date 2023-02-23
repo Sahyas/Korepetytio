@@ -71,9 +71,9 @@ public class AllTeachhersActivity extends Activity {
 
                                 teachers.add(new Client(String.valueOf(document.getData().get("username")), String.valueOf(document.getData().get("password")),
                                         String.valueOf(document.getData().get("email")), ClientRole.TEACHER, (Double) document.getData().get("grade")));
-                                teachersList.add("Nauczyciel:  " + document.getData().get("username") + "\nOcena nauczyciela to: " + document.getData().get("grade")
-                                        + "\nCena nauczyciela to: " + document.getData().get("price") + "\nPrzedmiot nauczyciela to :" + document.getData().get("subject")
-                                        + "\nDysfunkcja: " + document.getData().get("dysfunctions"));
+                                teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
+                                        + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
+                                        + "\nDysfunction: " + document.getData().get("dysfunctions"));
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
 

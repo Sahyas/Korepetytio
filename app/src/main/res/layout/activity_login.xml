@@ -15,7 +15,7 @@
         android:layout_marginEnd="157dp"
         android:layout_marginBottom="188dp"
         android:onClick="backtoMain"
-        android:text="@string/wr"
+        android:text="Back"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
         android:layout_marginEnd="149dp"
         android:background="#4CAF50"
         android:onClick="check_login"
-        android:text="@string/zaloguj"
+        android:text="login"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,15 +73,14 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="251dp"
-        android:layout_height="111dp"
-        android:layout_marginTop="52dp"
-        android:text="Zaloguj się"
+        android:layout_width="122dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="48dp"
+        android:text="Login"
         android:textColor="#4CAF50"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
