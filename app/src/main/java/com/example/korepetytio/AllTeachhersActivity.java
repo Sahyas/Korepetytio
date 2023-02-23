@@ -1,6 +1,8 @@
 package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
+import static com.example.korepetytio.StudentLoginActivity.currentOnlineStudent;
+import static com.example.korepetytio.ChooseHourActivity.teacherName;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,11 +26,14 @@ import androidx.annotation.Nullable;
 import com.example.korepetytio.client.Client;
 import com.example.korepetytio.client.Dysfunctions;
 import com.example.korepetytio.client.Subject;
+import com.example.korepetytio.client.Teacher;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +49,7 @@ public class AllTeachhersActivity extends Activity {
     TextView textView7;
     private List<String> teachersList = new ArrayList<>();
     private Button refreshButton;
+    private Teacher currentTeacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +96,7 @@ public class AllTeachhersActivity extends Activity {
                                     teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
                                             + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
                                             + "\nDysfunction: " + document.getData().get("dysfunctions"));
+
                                 }
                                 else if(Objects.equals(subject, "ALL") && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))){
                                     teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
@@ -130,6 +137,7 @@ public class AllTeachhersActivity extends Activity {
 
     public void refresh() {
         ListView lv = (ListView) findViewById(R.id.listView1);
+        Log.d(TAG, String.valueOf(lv.getFooterViewsCount()));
         lv.setAdapter(new MyListAdapter(this, R.layout.single_teacher, teachersList));
     }
 
@@ -143,6 +151,8 @@ public class AllTeachhersActivity extends Activity {
         allTeachers();
         refresh();
     }
+
+
 
     private class MyListAdapter extends ArrayAdapter<String> {
 
@@ -167,8 +177,21 @@ public class AllTeachhersActivity extends Activity {
                 mainViewHolder = (AllTeachhersActivity.ViewHolder) convertView.getTag();
             }
             mainViewHolder.title.setText(getItem(position));
+            mainViewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
+            mainViewHolder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String currentTeacher = teachersList.get(position);
+                    String currentTeacherUsername = StringUtils.substringBetween(currentTeacher, ":", "U");
+                    Log.d(TAG, currentTeacherUsername);
+                    teacherName = currentTeacherUsername;
+                    startActivity(new Intent(AllTeachhersActivity.this, ChooseHourActivity.class));
+                }
+            });
             return convertView;
         }
+
+
     }
 
     public class ViewHolder {

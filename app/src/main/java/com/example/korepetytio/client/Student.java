@@ -19,4 +19,8 @@ public class Student extends Client{
     public List<Teacher> getMyTeachers() {
         return myTeachers;
     }
+
+    public void addTeacher(Teacher teacher) {
+        myTeachers.add(teacher);
+    }
 }
