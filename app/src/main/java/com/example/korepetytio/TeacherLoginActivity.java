@@ -19,6 +19,7 @@ import com.example.korepetytio.client.Teacher;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import static com.example.korepetytio.ChooseHourActivity.currentMyTeachers;
 
 public class TeacherLoginActivity extends AppCompatActivity {
 
@@ -68,6 +69,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
             loadingBar.show();
             login(email, password);
         }
+
 
     }
     private void login(String email, String password) {

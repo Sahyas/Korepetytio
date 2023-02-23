@@ -3,6 +3,7 @@ package com.example.korepetytio;
 
 import static com.example.korepetytio.StudentLoginActivity.currentOnlineStudent;
 import static com.example.korepetytio.TeacherLoginActivity.currentOnlineTeacher;
+import static com.example.korepetytio.ChooseHourActivity.currentMyTeachers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MyProfileActivity extends AppCompatActivity {
@@ -53,7 +56,21 @@ public class MyProfileActivity extends AppCompatActivity {
             ratingBarLayout.setVisibility(View.GONE);
         }
 
+        TextView teachers = findViewById(R.id.MyTeachers);
+        TextView textView10 = findViewById(R.id.textView10);
+        if (currentOnlineTeacher != null) {
+            teachers.setVisibility(View.GONE);
+            textView10.setVisibility(View.GONE);
+        } else {
+            teachers.setVisibility(View.VISIBLE);
+            textView10.setVisibility(View.VISIBLE);
+            currentMyTeachers = currentMyTeachers.replaceAll("\\|", "\n\n");
+            teachers.setText(currentMyTeachers);
+            textView10.setText("Your Teachers:");
+        }
     }
+
+
 
     public void backtoMenu(View v) {
         Intent i = new Intent(this, MenuActivity.class);
@@ -64,4 +81,5 @@ public class MyProfileActivity extends AppCompatActivity {
         Intent i = new Intent(this, ChangePasswordActivity.class);
         startActivity(i);
     }
+
 }

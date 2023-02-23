@@ -17,8 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginBottom="44dp"
+        android:background="#4CAF50"
         android:onClick="refresh"
         android:text="refresh"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -42,8 +44,10 @@
         android:layout_marginStart="39dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="44dp"
+        android:background="#4CAF50"
         android:onClick="backtoChooseList"
         android:text="back"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonAll10" />
@@ -94,8 +98,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="39dp"
         android:layout_marginBottom="44dp"
+        android:background="#4CAF50"
         android:onClick="search"
         android:text="Search"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/refreshButton" />
 

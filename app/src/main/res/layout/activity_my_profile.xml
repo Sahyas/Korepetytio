@@ -10,19 +10,19 @@
         android:id="@+id/profile"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/profile"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="293dp"
-        android:layout_height="269dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="124dp"
+        android:layout_width="382dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="76dp"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile" />
 
@@ -30,14 +30,14 @@
         android:id="@+id/rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:isIndicator="true"
         android:numStars="5"
         android:progressBackgroundTint="@color/grey"
         android:progressTint="@color/yellow"
         android:rating="0"
         android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile" />
 
@@ -45,24 +45,51 @@
         android:id="@+id/button12"
         android:layout_width="189dp"
         android:layout_height="62dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:onClick="changePassword"
         android:text="Change password"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
     <Button
         android:id="@+id/button15"
         android:layout_width="189dp"
         android:layout_height="62dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="backtoMenu"
         android:text="Back"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button12" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="162dp"
+        android:layout_height="34dp"
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="343dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <TextView
+            android:id="@+id/MyTeachers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
