@@ -1,6 +1,6 @@
 package com.example.korepetytio;
 
-import static com.example.korepetytio.LoginActivity.client;
+import static com.example.korepetytio.TeacherLoginActivity.currentOnlineTeacher;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -63,13 +63,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
 //            loadingBar.setMessage("Please wait, while we are checking the credentials.");
 //            loadingBar.setCanceledOnTouchOutside(false);
 //            loadingBar.show();
-            changePassword(newPassword, client.getEmail());
+            changePassword(newPassword, currentOnlineTeacher.getEmail());
         }
     }
 
     public void changePassword(String newPassword, String email) {
         String collection;
-        if(client.getRole()== ClientRole.STUDENT){
+        if(currentOnlineTeacher.getRole()== ClientRole.STUDENT){
             collection = "students";
         }
         else {
@@ -86,7 +86,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     String documentId = documentSnapshot.getId();
                     DocumentReference documentReference = studentsRef.document(documentId);
                     documentReference.update("password", newPassword);
-                    client.setPassword(newPassword);
+                    currentOnlineTeacher.setPassword(newPassword);
                     Intent intent = new Intent(ChangePasswordActivity.this, MyProfileActivity.class);
                     startActivity(intent);
                 }

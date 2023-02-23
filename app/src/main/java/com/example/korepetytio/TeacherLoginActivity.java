@@ -1,7 +1,6 @@
 package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
-import static com.example.korepetytio.LoginActivity.client;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -27,6 +26,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
     private EditText editTextTextPersonNameT2;
     private EditText editTextTextPersonNameT1;
     private ProgressDialog loadingBar;
+    public static Teacher currentOnlineTeacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +85,9 @@ public class TeacherLoginActivity extends AppCompatActivity {
                             String dysfunction = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("dysfunctions"));
                             String price = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("price"));
                             String subject = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("subject"));
-                            client = new Teacher(name, password, email, ClientRole.TEACHER, grade, dysfunction, price, subject);
+                            currentOnlineTeacher = new Teacher(name, password, email, ClientRole.TEACHER, grade, dysfunction, price, subject);
                             Log.d(TAG, "TAAAAA:        " + name);
-                            Log.d(TAG, "TAAAAA:        " + client);
+                            Log.d(TAG, "TAAAAA:        " + currentOnlineTeacher);
                             Intent intent = new Intent(TeacherLoginActivity.this, MenuActivity.class);
                             startActivity(intent);
                         } else {

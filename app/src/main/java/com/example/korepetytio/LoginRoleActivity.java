@@ -19,7 +19,7 @@ public class LoginRoleActivity extends AppCompatActivity {
     }
 
     public void studentLogin(View v) {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, StudentLoginActivity.class));
     }
 
 }

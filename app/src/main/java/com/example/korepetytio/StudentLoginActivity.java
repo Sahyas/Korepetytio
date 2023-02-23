@@ -15,17 +15,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.korepetytio.client.ClientRole;
+import com.example.korepetytio.client.Dysfunctions;
+import com.example.korepetytio.client.Student;
 import com.example.korepetytio.client.Teacher;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class LoginActivity extends AppCompatActivity {
+public class StudentLoginActivity extends AppCompatActivity {
     private Button button6;
     private EditText editTextTextPersonName2;
     private EditText editTextTextPersonName3;
     private ProgressDialog loadingBar;
-    public static Teacher client;
+    public static Student currentOnlineStudent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,13 +84,16 @@ public class LoginActivity extends AppCompatActivity {
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
                             Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
                             String dysfunction = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("dysfunctions"));
-                            client = new Teacher(name, password, email, ClientRole.STUDENT, grade, dysfunction, null, null);
+                            if(dysfunction == "null") {
+                                dysfunction = "NO_DYSFUNCTIONS";
+                            }
+                            currentOnlineStudent = new Student(name, password, email, ClientRole.STUDENT, grade, Dysfunctions.valueOf(dysfunction));
                             Log.d(TAG, "TAAAAA:        " + name);
-                            Log.d(TAG, "TAAAAA:        " + client);
-                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                            Log.d(TAG, "TAAAAA:        " + currentOnlineStudent);
+                            Intent intent = new Intent(StudentLoginActivity.this, MenuActivity.class);
                             startActivity(intent);
                         } else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(StudentLoginActivity.this, MainActivity.class);
                             startActivity(intent);
                         }
                     }

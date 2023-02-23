@@ -1,6 +1,7 @@
 package com.example.korepetytio;
 
-import static com.example.korepetytio.LoginActivity.client;
+import static com.example.korepetytio.TeacherLoginActivity.currentOnlineTeacher;
+import static com.example.korepetytio.StudentLoginActivity.currentOnlineStudent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +30,8 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(this, MyProfileActivity.class));
     }
     public void wyloguj(View v) {
-        client = null;
+        currentOnlineTeacher = null;
+        currentOnlineStudent = null;
         startActivity(new Intent(this, MainActivity.class));
     }
 }

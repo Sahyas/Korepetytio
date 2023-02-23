@@ -1,7 +1,8 @@
 package com.example.korepetytio;
 
 
-import static com.example.korepetytio.LoginActivity.client;
+import static com.example.korepetytio.StudentLoginActivity.currentOnlineStudent;
+import static com.example.korepetytio.TeacherLoginActivity.currentOnlineTeacher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.korepetytio.client.Client;
 import com.example.korepetytio.client.ClientRole;
 
 
@@ -24,30 +26,28 @@ public class MyProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
 
 
-
 //        db.collection("students")
 //                .whereEqualTo("email", client.getEmail())
 //                .get()
         TextView myTextView = findViewById(R.id.textView2);
-        if(client.getRole()== ClientRole.TEACHER){
-        myTextView.setText("Username: " + client.getUsername() + "\n" +
-                "Email: " + client.getEmail()+ "\n" +
-                "Password: " + client.getPassword() + "\n" +
-                "Role: " + client.getRole()+ "\n" +
-                "Dysfunction: " + client.getDysfunctions()+ "\n" +
-                "Subject: " + client.getSubject()+ "\n" +
-                "Price: " + client.getLessonPrice());
+        if (currentOnlineTeacher != null) {
+            myTextView.setText("Username: " + currentOnlineTeacher.getUsername() + "\n" +
+                    "Email: " + currentOnlineTeacher.getEmail() + "\n" +
+                    "Password: " + currentOnlineTeacher.getPassword() + "\n" +
+                    "Role: " + currentOnlineTeacher.getRole() + "\n" +
+                    "Dysfunction: " + currentOnlineTeacher.getDysfunctions() + "\n" +
+                    "Subject: " + currentOnlineTeacher.getSubject() + "\n" +
+                    "Price: " + currentOnlineTeacher.getLessonPrice());
+            RatingBar ratingBar = findViewById(R.id.rating_bar);
+            double grade = currentOnlineTeacher.getGrade();
+            ratingBar.setRating((float) grade);
+        } else {
+            myTextView.setText("Username: " + currentOnlineStudent.getUsername() + "\n" +
+                    "Email: " + currentOnlineStudent.getEmail() + "\n" +
+                    "Password: " + currentOnlineStudent.getPassword() + "\n" +
+                    "Role: " + currentOnlineStudent.getRole() + "\n" +
+                    "Dysfunction: " + currentOnlineStudent.getDysfunctions());
         }
-        else {
-            myTextView.setText("Username: " + client.getUsername() + "\n" +
-                    "Email: " + client.getEmail()+ "\n" +
-                    "Password: " + client.getPassword() + "\n" +
-                    "Role: " + client.getRole()+ "\n" +
-                    "Dysfunction: " + client.getDysfunctions());
-        }
-        RatingBar ratingBar = findViewById(R.id.rating_bar);
-        double grade = client.getGrade();
-        ratingBar.setRating((float) grade);
 
     }
 

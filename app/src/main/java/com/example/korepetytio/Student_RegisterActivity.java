@@ -119,7 +119,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
                                             Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                            Intent intent = new Intent(Student_RegisterActivity.this, LoginActivity.class);
+                                            Intent intent = new Intent(Student_RegisterActivity.this, StudentLoginActivity.class);
                                             startActivity(intent);
                                         }
                                     })

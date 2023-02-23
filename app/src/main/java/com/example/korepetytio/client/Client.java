@@ -1,5 +1,6 @@
 package com.example.korepetytio.client;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Client {
