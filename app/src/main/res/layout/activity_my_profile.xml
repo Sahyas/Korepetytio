@@ -18,12 +18,12 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="382dp"
-        android:layout_height="142dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="290dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="80dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile" />
 
     <RatingBar
@@ -79,8 +79,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="346dp"
-        android:layout_height="120dp"
+        android:layout_width="241dp"
+        android:layout_height="121dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
