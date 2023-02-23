@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,23 +93,20 @@ public class AllTeachhersActivity extends Activity {
                     public void onSuccess(QuerySnapshot documentSnapshots) {
                         if (!documentSnapshots.isEmpty()) {
                             for (DocumentSnapshot document : documentSnapshots.getDocuments()) {
-                                if(Objects.equals(subject, document.getData().get("subject")) && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))){
+                                if (Objects.equals(subject, document.getData().get("subject")) && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))) {
                                     teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
                                             + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
                                             + "\nDysfunction: " + document.getData().get("dysfunctions"));
 
-                                }
-                                else if(Objects.equals(subject, "ALL") && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))){
+                                } else if (Objects.equals(subject, "ALL") && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))) {
                                     teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
                                             + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
                                             + "\nDysfunction: " + document.getData().get("dysfunctions"));
-                                }
-                                else if(Objects.equals(dysfunctions, "ALL") && Objects.equals(subject, document.getData().get("subject"))){
+                                } else if (Objects.equals(dysfunctions, "ALL") && Objects.equals(subject, document.getData().get("subject"))) {
                                     teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
                                             + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
                                             + "\nDysfunction: " + document.getData().get("dysfunctions"));
-                                }
-                                else if(Objects.equals(dysfunctions, "ALL") && Objects.equals(subject, "ALL")){
+                                } else if (Objects.equals(dysfunctions, "ALL") && Objects.equals(subject, "ALL")) {
                                     teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
                                             + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
                                             + "\nDysfunction: " + document.getData().get("dysfunctions"));
@@ -145,6 +143,7 @@ public class AllTeachhersActivity extends Activity {
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
     }
+
     public void search(View v) {
         dysfunctions = spinner6.getSelectedItem().toString();
         subject = spinner7.getSelectedItem().toString();
@@ -153,11 +152,11 @@ public class AllTeachhersActivity extends Activity {
     }
 
 
-
     private class MyListAdapter extends ArrayAdapter<String> {
 
         public Client teacher;
         private int layout;
+
         public MyListAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
             super(context, resource, objects);
             layout = resource;
@@ -167,17 +166,22 @@ public class AllTeachhersActivity extends Activity {
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             AllTeachhersActivity.ViewHolder mainViewHolder = null;
-            if(convertView == null){
+            if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(layout, parent, false);
                 mainViewHolder = new AllTeachhersActivity.ViewHolder();
                 mainViewHolder.title = (TextView) convertView.findViewById(R.id.Row);
                 convertView.setTag(mainViewHolder);
-            }else{
+            } else {
                 mainViewHolder = (AllTeachhersActivity.ViewHolder) convertView.getTag();
             }
             mainViewHolder.title.setText(getItem(position));
             mainViewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
+
+            RatingBar ratingBar1 = convertView.findViewById(R.id.rating_bar2);
+            String rate = teachersList.get(position);
+            String grade = StringUtils.substringBetween(rate, "g:", "P");
+            ratingBar1.setRating(Float.parseFloat(grade));
             mainViewHolder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -191,7 +195,6 @@ public class AllTeachhersActivity extends Activity {
             return convertView;
         }
 
-
     }
 
     public class ViewHolder {
@@ -199,6 +202,5 @@ public class AllTeachhersActivity extends Activity {
         TextView title;
         Button button;
     }
-
 
 }

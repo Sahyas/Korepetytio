@@ -83,11 +83,11 @@ public class TeacherLoginActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
-                            Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
+                            Long grade = (Long) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
                             String dysfunction = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("dysfunctions"));
                             String price = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("price"));
                             String subject = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("subject"));
-                            currentOnlineTeacher = new Teacher(name, password, email, ClientRole.TEACHER, grade, dysfunction, price, subject);
+                            currentOnlineTeacher = new Teacher(name, password, email, ClientRole.TEACHER, Double.valueOf(grade), dysfunction, price, subject);
                             Log.d(TAG, "TAAAAA:        " + name);
                             Log.d(TAG, "TAAAAA:        " + currentOnlineTeacher);
                             Intent intent = new Intent(TeacherLoginActivity.this, MenuActivity.class);
