@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".GuestViewActivity">
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="313dp"
+        android:layout_height="72dp"
+        android:text="You must be logged in to rate and hire our teachers!"
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listView1Guest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2Guest"
+        app:layout_constraintVertical_bias="0.54" />
+
     <Button
         android:id="@+id/refreshButtonGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginBottom="40dp"
-        android:onClick="refresh"
         android:text="refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,11 +45,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button3Guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:onClick="backtoChooseList"
+        android:onClick="backtoMain"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,17 +57,17 @@
         app:layout_constraintStart_toEndOf="@+id/refreshButtonGuest" />
 
     <ListView
-        android:id="@+id/listView1"
-        android:layout_width="382dp"
-        android:layout_height="558dp"
+        android:id="@+id/listView1Guest"
+        android:layout_width="379dp"
+        android:layout_height="470dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2Guest"
-        app:layout_constraintVertical_bias="0.009" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2Guest">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

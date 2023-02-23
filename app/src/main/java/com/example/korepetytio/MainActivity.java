@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        guestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, GuestViewActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 //        private void AllowAccess(final String email, final String password) {
