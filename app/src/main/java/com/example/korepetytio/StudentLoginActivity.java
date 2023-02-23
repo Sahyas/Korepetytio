@@ -2,6 +2,8 @@ package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
 
+import static com.example.korepetytio.ChooseHourActivity.currentMyTeachers;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -83,6 +85,7 @@ public class StudentLoginActivity extends AppCompatActivity {
                             //
                             String name = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("username"));
                             Double grade = (Double) queryDocumentSnapshots.getDocuments().get(0).getData().get("grade");
+                            currentMyTeachers = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("myTeachers"));
                             String dysfunction = String.valueOf(queryDocumentSnapshots.getDocuments().get(0).getData().get("dysfunctions"));
                             if(dysfunction == "null") {
                                 dysfunction = "NO_DYSFUNCTIONS";

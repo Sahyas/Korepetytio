@@ -1,10 +1,11 @@
 package com.example.korepetytio.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends Client{
+public class Student extends Client {
     private Dysfunctions dysfunctions;
-    private List<Teacher> myTeachers;
+    public static List<MyTeacher> myTeachers = new ArrayList<>();
 
     public Student( String username, String password, String email, ClientRole role, Double grade,
                    Dysfunctions dysfunctions) {
@@ -16,11 +17,11 @@ public class Student extends Client{
         return dysfunctions;
     }
 
-    public List<Teacher> getMyTeachers() {
+    public List<MyTeacher> getMyTeachers() {
         return myTeachers;
     }
 
-    public void addTeacher(Teacher teacher) {
+    public void addTeacher(MyTeacher teacher) {
         myTeachers.add(teacher);
     }
 }

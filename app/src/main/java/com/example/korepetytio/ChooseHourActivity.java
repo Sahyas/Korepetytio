@@ -1,12 +1,17 @@
 package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
+import static com.example.korepetytio.TeacherLoginActivity.currentOnlineTeacher;
+import static com.example.korepetytio.client.Student.myTeachers;
+import static com.example.korepetytio.StudentLoginActivity.currentOnlineStudent;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +20,21 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.korepetytio.client.MyTeacher;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChooseHourActivity extends AppCompatActivity implements View.OnClickListener {
-
     public static String teacherName;
     private TextView text;
     private TextView chosenHours;
@@ -28,6 +44,12 @@ public class ChooseHourActivity extends AppCompatActivity implements View.OnClic
     private Calendar selectedDate;
     private Button setDateButton;
     private TextView chosenDate;
+    private Button acceptButton;
+    private int day;
+    private int month;
+    private int year;
+    public static String currentMyTeachers;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +59,7 @@ public class ChooseHourActivity extends AppCompatActivity implements View.OnClic
         selectedDate = Calendar.getInstance();
         setDateButton = findViewById(R.id.setDateButton);
         chosenDate = findViewById(R.id.textViewChosenDate);
+        acceptButton = findViewById(R.id.acceptButton);
         text = findViewById(R.id.textViewChooseHours);
         text.setText("");
         text.setText("Choose reception hours for" + " " + teacherName.trim() + ":");
@@ -62,6 +85,33 @@ public class ChooseHourActivity extends AppCompatActivity implements View.OnClic
                 datePickerDialog.show();
             }
         });
+
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String date = day + "." + month + "." + year + " " + hour + ":" + min;
+                Log.d(TAG, date);
+                MyTeacher teacher = new MyTeacher(teacherName, date);
+                myTeachers.add(teacher);
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CollectionReference studentsRef = db.collection("students");
+                Query query = studentsRef.whereEqualTo("email", currentOnlineStudent.getEmail());
+                query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            // zaktualizuj pole "password" w dokumencie dla użytkownika o danym adresie e-mail
+                            String documentId = documentSnapshot.getId();
+                            DocumentReference documentReference = studentsRef.document(documentId);
+                            documentReference.update("myTeachers", currentMyTeachers + "|" + teacherName + date);
+                            currentMyTeachers = currentMyTeachers + " |" + teacherName + date;
+                            Intent intent = new Intent(ChooseHourActivity.this, MyProfileActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -81,9 +131,9 @@ public class ChooseHourActivity extends AppCompatActivity implements View.OnClic
                             chosenHours = findViewById(R.id.textViewChosenHours);
                             chosenHours.setText("");
                             chosenHours.setText(hour + ":" + min);
-                            int year = selectedDate.get(Calendar.YEAR);
-                            int month = selectedDate.get(Calendar.MONTH);
-                            int day = selectedDate.get(Calendar.DAY_OF_MONTH);
+                            year = selectedDate.get(Calendar.YEAR);
+                            month = selectedDate.get(Calendar.MONTH);
+                            day = selectedDate.get(Calendar.DAY_OF_MONTH);
                             chosenDate.setText(day + "." + month + "." + year);
                         }
                     }, currentHour, currentMinute, false);

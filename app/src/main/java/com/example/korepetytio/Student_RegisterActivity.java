@@ -111,6 +111,7 @@ public class Student_RegisterActivity extends AppCompatActivity {
                             user.put("password", password);
                             user.put("grade", grade);
                             user.put("dysfunctions", dysfunctions);
+                            user.put("myTeachers", "");
 
                             // Add a new document with a generated ID
                             db.collection("students")
