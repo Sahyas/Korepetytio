@@ -30,20 +30,20 @@ public class MyProfileActivity extends AppCompatActivity {
 //                .get()
         TextView myTextView = findViewById(R.id.textView2);
         if(client.getRole()== ClientRole.TEACHER){
-        myTextView.setText("Nazwa użytkownika: " + client.getUsername() + "\n" +
-                "Email użytkownika: " + client.getEmail()+ "\n" +
-                "Hasło użytkownika: " + client.getPassword() + "\n" +
-                "Rola użytkownika: " + client.getRole()+ "\n" +
-                "Dysfunkcja użytkownika: " + client.getDysfunctions()+ "\n" +
-                "Przedmiot użytkownika: " + client.getSubject()+ "\n" +
-                "Cena użytkownika: " + client.getLessonPrice());
+        myTextView.setText("Username: " + client.getUsername() + "\n" +
+                "Email: " + client.getEmail()+ "\n" +
+                "Password: " + client.getPassword() + "\n" +
+                "Role: " + client.getRole()+ "\n" +
+                "Dysfunction: " + client.getDysfunctions()+ "\n" +
+                "Subject: " + client.getSubject()+ "\n" +
+                "Price: " + client.getLessonPrice());
         }
         else {
-            myTextView.setText("Nazwa użytkownika: " + client.getUsername() + "\n" +
-                    "Email użytkownika: " + client.getEmail()+ "\n" +
-                    "Hasło użytkownika: " + client.getPassword() + "\n" +
-                    "Rola użytkownika: " + client.getRole()+ "\n" +
-                    "Dysfunkcja użytkownika: " + client.getDysfunctions());
+            myTextView.setText("Username: " + client.getUsername() + "\n" +
+                    "Email: " + client.getEmail()+ "\n" +
+                    "Password: " + client.getPassword() + "\n" +
+                    "Role: " + client.getRole()+ "\n" +
+                    "Dysfunction: " + client.getDysfunctions());
         }
         RatingBar ratingBar = findViewById(R.id.rating_bar);
         double grade = client.getGrade();
@@ -60,5 +60,4 @@ public class MyProfileActivity extends AppCompatActivity {
         Intent i = new Intent(this, ChangePasswordActivity.class);
         startActivity(i);
     }
-
 }
