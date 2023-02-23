@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Teacher_RegisterActivity extends AppCompatActivity {
 
@@ -83,11 +84,22 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public boolean validateEmail(String emailAddress) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
+    }
+
     private void CreateAccount() {
         String name = editTextTextPersonName5.getText().toString();
         String email = editTextTextPersonName6.getText().toString();
         String password = editTextTextPersonName4.getText().toString();
         String lessonPrice = price.getText().toString();
+        boolean check_valid_email = validateEmail(email);
+
+        Log.w(TAG, "aaaaaaaa" + check_valid_email);
 
         if(TextUtils.isEmpty(name)){
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
@@ -100,6 +112,9 @@ public class Teacher_RegisterActivity extends AppCompatActivity {
         }
         else if(TextUtils.isEmpty(lessonPrice)){
             Toast.makeText(this, "Please write your lessonPrice...", Toast.LENGTH_SHORT).show();
+        }
+        else if(!check_valid_email){
+            Toast.makeText(this, "Wrong email...", Toast.LENGTH_SHORT).show();
         }
         else {
             loadingBar.setTitle("Create Account");

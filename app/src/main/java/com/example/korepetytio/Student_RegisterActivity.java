@@ -26,6 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Student_RegisterActivity extends AppCompatActivity {
     private Button button7;
@@ -69,17 +70,30 @@ public class Student_RegisterActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public boolean validateEmail(String emailAddress) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
+    }
+
     private void CreateAccount() {
         String username = editTextTextPersonName8.getText().toString();
         String email = editTextTextPersonName9.getText().toString();
         String password = editTextTextPersonName7.getText().toString();
+        boolean check_valid_email = validateEmail(email);
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Please write your name...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please write your email...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else if(!check_valid_email){
+            Toast.makeText(this, "Wrong email...", Toast.LENGTH_SHORT).show();
+        }
+        else {
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("Please wait, while we are checking the credentials.");
             loadingBar.setCanceledOnTouchOutside(false);
