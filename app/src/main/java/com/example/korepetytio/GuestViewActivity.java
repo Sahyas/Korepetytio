@@ -2,10 +2,6 @@ package com.example.korepetytio;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +13,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.korepetytio.client.Client;
-import com.example.korepetytio.client.ClientRole;
+import com.example.korepetytio.client.Dysfunctions;
+import com.example.korepetytio.client.Subject;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,22 +32,37 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GuestViewActivity extends AppCompatActivity {
 
     private ListView list;
     private ArrayAdapter<String> adapter;
-    private final List<Client> teachers = new ArrayList<>();
+    Spinner spinner4;
+    Spinner spinner5;
+    private String dysfunctions = "ALL", subject = "ALL";
 
-    private final List<String> teachersList = new ArrayList<>();
+    private List<String> teachersList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_view);
-        allTeachers();
-        refresh();
+
+        spinner4 = (Spinner) findViewById(R.id.spinner4);
+        String[] options = {"ALL", Dysfunctions.AUTISM.toString(), Dysfunctions.VISUALLY_IMPAIRED.toString(), Dysfunctions.NO_DYSFUNCTIONS.toString()};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner4.setAdapter(adapter);
+
+        spinner5 = (Spinner) findViewById(R.id.spinner5);
+        String[] options2 = {"ALL", Subject.English.toString(), Subject.Mathematics.toString(), Subject.Polish.toString(), Subject.IT.toString()};
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options2);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner5.setAdapter(adapter2);
 
         Button refreshButton = findViewById(R.id.refreshButtonGuest);
         refreshButton.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +75,7 @@ public class GuestViewActivity extends AppCompatActivity {
 
     public void allTeachers() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+        teachersList.clear();
         db.collection("teachers")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -66,17 +83,30 @@ public class GuestViewActivity extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot documentSnapshots) {
                         if (!documentSnapshots.isEmpty()) {
                             for (DocumentSnapshot document : documentSnapshots.getDocuments()) {
-                                Log.d(TAG, "TAAAAA" + String.valueOf(document.getData().get("username")));
-//                                teachers.add(String.valueOf(document.getData().get("username")));
-
-                                teachers.add(new Client(String.valueOf(document.getData().get("username")), String.valueOf(document.getData().get("password")),
-                                        String.valueOf(document.getData().get("email")), ClientRole.TEACHER, (Double) document.getData().get("grade")));
-                                teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
-                                        + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
-                                        + "\nDysfunction: " + document.getData().get("dysfunctions"));
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if(Objects.equals(subject, document.getData().get("subject")) && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))){
+                                    teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
+                                            + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
+                                            + "\nDysfunction: " + document.getData().get("dysfunctions"));
+                                }
+                                else if(Objects.equals(subject, "ALL") && Objects.equals(dysfunctions, document.getData().get("dysfunctions"))){
+                                    teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
+                                            + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
+                                            + "\nDysfunction: " + document.getData().get("dysfunctions"));
+                                }
+                                else if(Objects.equals(dysfunctions, "ALL") && Objects.equals(subject, document.getData().get("subject"))){
+                                    teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
+                                            + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
+                                            + "\nDysfunction: " + document.getData().get("dysfunctions"));
+                                }
+                                else if(Objects.equals(dysfunctions, "ALL") && Objects.equals(subject, "ALL")){
+                                    teachersList.add("Teacher:  " + document.getData().get("username") + "\nUsers' rating: " + document.getData().get("grade")
+                                            + "\nPrice per hour: " + document.getData().get("price") + "\nTeaches: " + document.getData().get("subject")
+                                            + "\nDysfunction: " + document.getData().get("dysfunctions"));
+                                }
                             }
-                            Log.d(TAG, "CALA LISTA" + teachers.get(0).getUsername() + " " + teachers.get(0).getGrade());
+                            if(teachersList.size() == 0) {
+                                teachersList.add("No search results");
+                            }
                         } else {
                             Log.d(TAG, "Error getting documents: ");
                         }
@@ -92,7 +122,6 @@ public class GuestViewActivity extends AppCompatActivity {
 
     public void refresh() {
         ListView lv = (ListView) findViewById(R.id.listView1Guest);
-        Log.d(TAG, "duuuuupa" + teachers);
         lv.setAdapter(new MyListAdapterGuest(this, R.layout.single_teacher_guest, teachersList));
     }
 
@@ -100,37 +129,40 @@ public class GuestViewActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
-
-    private class MyListAdapterGuest extends ArrayAdapter<String> {
-
-        public Client teacher;
-        private int layout;
-        public MyListAdapterGuest(@NonNull Context context, int resource, @NonNull List<String> objects) {
-            super(context, resource, objects);
-            layout = resource;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            GuestViewActivity.ViewHolder mainViewholder = null;
-            if(convertView == null){
-                LayoutInflater inflater = LayoutInflater.from(getContext());
-                convertView = inflater.inflate(layout, parent, false);
-                ViewHolder viewHolder = new ViewHolder();
-                //viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
-                viewHolder.title = (TextView) convertView.findViewById(R.id.RowGuest);
-//                RatingBar ratingBar = findViewById(R.id.rating_bar2);
-//                double grade = client.getGrade();
-//                ratingBar.setRating((float) grade);
-                convertView.setTag(viewHolder);
-            }else{
-                mainViewholder = (GuestViewActivity.ViewHolder) convertView.getTag();
-                mainViewholder.title.setText(getItem(position));
-            }
-            return convertView;
-        }
+    public void search(View v) {
+        dysfunctions = spinner4.getSelectedItem().toString();
+        subject = spinner5.getSelectedItem().toString();
+        allTeachers();
+        refresh();
     }
+
+private class MyListAdapterGuest extends ArrayAdapter<String> {
+
+    public Client teacher;
+    private int layout;
+    public MyListAdapterGuest(@NonNull Context context, int resource, @NonNull List<String> objects) {
+        super(context, resource, objects);
+        layout = resource;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        GuestViewActivity.ViewHolder mainViewHolder = null;
+        if(convertView == null){
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(layout, parent, false);
+            mainViewHolder = new ViewHolder();
+            mainViewHolder.title = (TextView) convertView.findViewById(R.id.RowGuest);
+            convertView.setTag(mainViewHolder);
+        }else{
+            mainViewHolder = (GuestViewActivity.ViewHolder) convertView.getTag();
+        }
+        mainViewHolder.title.setText(getItem(position));
+        return convertView;
+    }
+}
+
     public class ViewHolder {
         ImageView thumbnail;
         TextView title;

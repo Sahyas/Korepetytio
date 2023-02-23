@@ -16,17 +16,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/listView1Guest"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2Guest"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/refreshButtonGuest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="44dp"
         android:text="refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,26 +47,64 @@
         android:id="@+id/button3Guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="44dp"
         android:onClick="backtoMain"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.404"
-        app:layout_constraintStart_toEndOf="@+id/refreshButtonGuest" />
+        app:layout_constraintStart_toEndOf="@+id/button10" />
 
     <ListView
         android:id="@+id/listView1Guest"
-        android:layout_width="379dp"
-        android:layout_height="470dp"
+        android:layout_width="387dp"
+        android:layout_height="351dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2Guest">
+        app:layout_constraintStart_toStartOf="parent">
 
     </ListView>
+
+    <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="381dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="Dysfunction"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <Spinner
+        android:id="@+id/spinner5"
+        android:layout_width="381dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/listView1Guest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="Subject"
+        app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="4dp"
+        android:onClick="search"
+        android:text="Search"
+        app:layout_constraintStart_toEndOf="@+id/refreshButtonGuest"
+        app:layout_constraintTop_toBottomOf="@+id/listView1Guest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
