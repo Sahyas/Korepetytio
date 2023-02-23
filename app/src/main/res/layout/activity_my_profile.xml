@@ -48,8 +48,8 @@
         android:layout_marginStart="108dp"
         android:layout_marginTop="12dp"
         android:onClick="changePassword"
-        android:text="Zmień hasło"
-        android:textSize="20sp"
+        android:text="Change password"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -60,7 +60,7 @@
         android:layout_marginStart="108dp"
         android:layout_marginTop="16dp"
         android:onClick="backtoMenu"
-        android:text="Wróć"
+        android:text="Back"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button12" />
