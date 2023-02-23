@@ -13,9 +13,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.korepetytio.client.Client;
-import com.example.korepetytio.client.ClientRole;
-
 
 public class MyProfileActivity extends AppCompatActivity {
     private Button changeButton;
@@ -38,15 +35,22 @@ public class MyProfileActivity extends AppCompatActivity {
                     "Dysfunction: " + currentOnlineTeacher.getDysfunctions() + "\n" +
                     "Subject: " + currentOnlineTeacher.getSubject() + "\n" +
                     "Price: " + currentOnlineTeacher.getLessonPrice());
-            RatingBar ratingBar = findViewById(R.id.rating_bar);
-            double grade = currentOnlineTeacher.getGrade();
-            ratingBar.setRating((float) grade);
         } else {
             myTextView.setText("Username: " + currentOnlineStudent.getUsername() + "\n" +
                     "Email: " + currentOnlineStudent.getEmail() + "\n" +
                     "Password: " + currentOnlineStudent.getPassword() + "\n" +
                     "Role: " + currentOnlineStudent.getRole() + "\n" +
                     "Dysfunction: " + currentOnlineStudent.getDysfunctions());
+        }
+        RatingBar ratingBarLayout = findViewById(R.id.rating_bar);
+        RatingBar ratingBar = findViewById(R.id.rating_bar);
+
+        if (currentOnlineTeacher != null) {
+            double grade = currentOnlineTeacher.getGrade();
+            ratingBarLayout.setVisibility(View.VISIBLE);
+            ratingBar.setRating((float) grade); // Przykładowa wartość oceny
+        } else {
+            ratingBarLayout.setVisibility(View.GONE);
         }
 
     }
